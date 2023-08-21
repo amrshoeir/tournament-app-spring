@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/pico-1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <title>Add game</title>
+</head>
+<body>
+<div th:replace="~{nav :: header}"></div>
+<div class="container">
+    <hgroup class="headings">
+        <h2>Add game</h2>
+    </hgroup>
+    <form method="post" th:action="@{/games}" th:object="${game}">
+        <div class="grid">
+            <label> Name:
+            <input  type="text"
+                    th:field="*{name}"
+                    required
+                    placeholder="Enter game name"
+            ></label>
+            <label> Description:
+            <textarea th:field="*{description}"
+                      required
+                      placeholder="Tournament details regarding game"
+            ></textarea></label>
+        </div>
+        <div class="grid">
+            <label> Team Size:
+            <input  type="number"
+                    th:field="*{teamSize}"
+                    placeholder="Set as 1 if solo game"
+                    min="1"
+                    max="10"
+            ></label>
+            <label> Prize Pool:
+            <input  type="number"
+                    th:field="*{prizePool}"
+                    min="50000"
+            ></label>
+        </div>
+        <button class="primary">Confirm</button>
+        <a role="button" type="button" href="/games">Cancel</a>
+    </form>
+</div>
+</body>
+</html>

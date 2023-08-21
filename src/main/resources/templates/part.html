@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/pico-1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <title>Participants</title>
+</head>
+<body>
+<div th:replace="~{nav :: header}"></div>
+<div class="grid" th:each="player:${players}" >
+    <article>
+        <hgroup>
+            <h4 th:text="${player.name}"></h4>
+            <h6 th:text="'Game: '+ ${player.game.name}"></h6>
+            <h6 th:text="'Tag: '+ ${player.gameTag}"></h6>
+        </hgroup>
+        <hgroup>
+            <h6 th:text="${player.email}">Email: </h6><br>
+            <h6 th:text="${player.age} + ' y.o'"></h6>
+        </hgroup>
+        <a role="button" th:href="@{/participants/player/edit/{id} (id=${player.id})}" class="contrast">Edit</a>
+        <a role="button" th:href="@{/participants/player/{id} (id=${player.id})}" class="secondary">Delete</a>
+    </article>
+</div>
+<div class="grid" th:each="team:${teams}">
+    <article>
+        <hgroup>
+            <h4 th:text="'Team '+${team.name}"></h4>
+        </hgroup>
+        <hgroup>
+            <h6 th:text="'Captain: ' + ${team.captainName}"></h6>
+            <h6 th:text="'Game: '+${team.game.name}"></h6>
+            <h6 th:text="'Contact: ' + ${team.captainEmail}"></h6>
+        </hgroup>
+        <a role="button" th:href="@{/participants/team/{id} (id=${team.id})}" class="secondary">Delete</a>
+    </article>
+</div>
+
+</body>
+</html>

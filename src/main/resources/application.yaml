@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: dev
+
+server:
+  port: 8080
+
+---
+spring:
+  datasource:
+    url: jdbc:h2:mem:tournament
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create-drop
+    defer-datasource-initialization: true

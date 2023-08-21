@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/pico-1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <script src="/js/form.js" type="application/javascript"></script>
+    <title>Player registration</title>
+</head>
+<body>
+<div th:replace="~{nav :: header}"></div>
+<div class="container">
+<hgroup class="headings">
+    <h2>Player registration</h2>
+    <h3 id="gameName" th:text="${game.name}"></h3>
+</hgroup>
+<form method="post" th:object="${player}" th:action="@{/register/player/{id} (id=${game.id})}">
+    <h6 id="mandatory">Fields with * are mandatory</h6>
+    <div class="grid">
+        <label>Name*:
+            <input th:field="*{name}"
+                   required type="text"
+                   name="name"
+                   placeholder="Enter your full name">
+        </label>
+        <label>Email*:
+            <input required th:field="*{email}"
+                   type="email"
+                   name="email"
+                   placeholder="Valid email for updates">
+        </label>
+        <label>Age*:
+            <input th:field="*{age}"
+                   required
+                   type="number"
+                   name="age"
+                   placeholder="Must be 13+"
+                   min="13"
+                   max="90"></label>
+        </div>
+    <div class="grid">
+        <article id="description" th:text="${game.description}"></article>
+    </div>
+        <div class="grid">
+            <label>Game tag*:<input
+                    th:field="*{gameTag}"
+                    required
+                    type="text"
+                    name="tag">
+            </label>
+            <input  type="hidden"
+                    th:field="*{game}">
+        </div>
+    <input type="submit" value="Register">
+    <input type="reset" value="Cancel" class="delete">
+    </form>
+</div>
+</body>
+</html>

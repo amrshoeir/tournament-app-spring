@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset = utf-8"/>
+    <link rel="stylesheet" href="/css/pico-1.5.10/css/pico.min.css" />
+    <title>Registration</title>
+</head>
+<body>
+<div th:replace="~{nav :: header}"></div>
+<h2> Choose your game: </h2>
+<div class="grid">
+    <div th:each="game: ${games}">
+        <a th:href="${game.teamSize>1}? '/register/team/' +${game.id} :'/register/player/' + ${game.id}">
+        <button th:text="${game.name}" class="contrast" />
+        </a>
+    </div>
+</div>
+</body>
+</html>

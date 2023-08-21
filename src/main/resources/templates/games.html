@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/pico-1.5.10/css/pico.min.css" />
+    <title>Games</title>
+</head>
+<body>
+<div th:replace="~{nav :: header}"></div>
+<a role="button" href="/games/add">Add game</a>
+<div class="grid" th:each="game: ${games}">
+    <article>
+        <h4 th:text="${game.name}"></h4>
+        <article th:text="${game.description}"></article>
+        <h6 th:text="'Team size: '+${game.teamSize>1?game.teamSize:'Solo game'}"></h6><br>
+        <h6 th:text="'Prize Pool: '+${game.prizePool/1000} + ' k Ft.' "></h6>
+        <a role="button" class="primary" th:href="@{/games/edit/{id} (id=${game.id})}">Edit</a>
+        <a role="button" class="secondary" th:href="@{/games/delete/{id} (id=${game.id})}">Delete</a>
+    </article>
+</div>
+</body>
+</html>

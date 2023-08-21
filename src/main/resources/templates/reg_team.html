@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/pico-1.5.10/css/pico.min.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+    <script src="/js/form.js" type="application/javascript"></script>
+    <title>Team registration</title>
+</head>
+<body>
+<div th:replace="~{nav :: header}"></div>
+<div class="container">
+    <hgroup>
+        <h2>Team registration</h2>
+        <h3 id="gameName" th:text="${game.name}"></h3>
+    </hgroup>
+    <form method="post" th:object="${team}" th:action="@{/register/team/{id} (id=${game.id})}">
+        <div class="grid">
+            <label> Name:
+                <input  type="text"
+                        th:field="*{name}"
+                        required
+                        placeholder="Team name"
+                ></label>
+            <label> Captain Name:
+                <input th:field="*{captainName}"
+                          required
+                          placeholder="Team's captain"
+                ></label>
+        </div>
+        <div class="grid">
+            <label> Captain Email:
+                <input  type="email"
+                        th:field="*{captainEmail}"
+                        placeholder="For contact"
+                        required
+                ></label>
+                <input  type="hidden"
+                        th:field="*{game}">
+        </div>
+        <button class="primary">Confirm</button>
+        <a role="button" type="button" href="/games">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
